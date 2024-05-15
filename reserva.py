@@ -6,22 +6,23 @@ class Reserva:
         self.cancha = cancha
 
     def __str__(self):
-        return f"Reserva {self.numero} - Fecha: {self.fecha} - Cliente: {self.cliente.nombre} - Cancha: {self.cancha.numero}"
+        return f"Reserva {self.numero} - Fecha: {self.fecha} - Cliente: {self.cliente.DNI} - Cancha: {self.cancha.numero}"
 
 class Cliente:
-    def __init__(self, nombre, saldo=0):
+    def __init__(self, DNI, nombre, saldo=0):
+        self.DNI = DNI
         self.nombre = nombre
         self.saldo = saldo
 
     def __str__(self):
-        return f"Cliente: {self.nombre} - Saldo: {self.saldo}"
+        return f"DNI: {self.DNI} - Cliente: {self.nombre} - Saldo: {self.saldo}"
 
     def reservar(self, reserva):
-        if self.saldo < -2000:
+        if self.saldo < 0:
             print("No puedes reservar, saldo insuficiente.")
             return False
         self.saldo -= reserva.cancha.precio
-        reserva.cancha.agregar_reserva(reserva)
+        reserva.cancha
         print("Reserva realizada con éxito.")
         return True
 
