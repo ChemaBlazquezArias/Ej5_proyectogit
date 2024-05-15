@@ -12,7 +12,7 @@ class Cancha:
 canchas = []
 
 def agregar_cancha(cancha):
-    if any(c.numero == cancha.numero for c in canchas):
+    if cancha.numero in [c.numero for c in canchas]:
         print(f"La cancha número {cancha.numero} ya está registrada.")
     else:
         canchas.append(cancha)
