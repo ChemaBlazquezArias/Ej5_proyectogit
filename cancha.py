@@ -6,7 +6,7 @@ class Cancha:
         self.habilitada = habilitada
         self.reservas = []
 
-    def __repr__(self):
+    def __str__(self):
         return f"Cancha(numero={self.numero}, deporte={self.deporte}, precio={self.precio}, habilitada={self.habilitada})"
 
 canchas = []
