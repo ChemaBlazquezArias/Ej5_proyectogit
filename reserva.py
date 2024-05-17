@@ -30,12 +30,12 @@ class Reserva:
         print(f"Reserva creada: {nueva_reserva.numero}")
         return True
 
-    def listar_reservas_cancha(self, cancha):
+    def listar_reservas_cancha(self, cancha):#Canchas reservadas
         print(f"Reservas de la cancha {cancha.nombre}:")
         for reserva in cancha.reservas:
             print(f"Reserva {reserva.numero} - Fecha: {reserva.fecha} - Cliente: {reserva.cliente.nombre}")
 
-    def listar_reservas_cliente(self, cliente):
+    def listar_reservas_cliente(self, cliente):# CLientes con reserva
         print(f"Reservas de {cliente.nombre}:")
         for reserva in cliente.reservas:
             print(f"Reserva {reserva.numero} - Fecha: {reserva.fecha} - Cancha: {reserva.cancha.nombre}")
