@@ -36,7 +36,7 @@ class Centro:
                     if opcion_centro == 1:
                         pass
                     elif opcion_centro == 9:
-                        print("Volviendo al menú principal...")
+                        print("Volviendo al menú principal...\n")
                         break
                     
             elif opcion == 2:
@@ -54,7 +54,7 @@ class Centro:
                     if opcion_centro == 1:
                         pass
                     elif opcion_centro == 6:
-                        print("Volviendo al menú principal...")
+                        print("Volviendo al menú principal...\n")
                         break
                     
             elif opcion == 3:
@@ -71,7 +71,7 @@ class Centro:
                     if opcion_centro == 1:
                         pass
                     elif opcion_centro == 5:
-                        print("Volviendo al menú principal...")
+                        print("Volviendo al menú principal...\n")
                         break
 
 Centro.main()
