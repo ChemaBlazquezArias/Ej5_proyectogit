@@ -4,11 +4,15 @@ class Persona():
         self.apellido = apellido
 
 class Cliente(Persona):
-    def __init__(self, nombre, apellido, telefono, identificador, activo):
+    def __init__(self, nombre, apellido, telefono, identificador, activo, saldo):
         super().__init__(nombre, apellido)
         self.telefono = telefono
         self.identificador = identificador
         self.activo = activo
+        self.saldo = saldo
+        
+    def __str__(self):
+        return f"Cliente: {self.nombre} {self.apellido} Teléfono: {self.telefono} Identificador: {self.identificador} Activo: {self.activo} Saldo: {self.saldo} €."
 
 lista_clientes = []
 lista_empleados = []
@@ -18,12 +22,33 @@ def crear_cliente():
     telefono = int(input("Teléfono: "))
     identificador = int(input("Identificador: "))
     activo = str(input("Activo (S/N): ")).lower() == 's' # cliente activo o en vez de darse de baja dejarlo como cliente inactivo
-    return Cliente(cliente_temporal.nombre, cliente_temporal.apellido, telefono, identificador, activo)
+    saldo = float(input("Saldo: "))
+    return Cliente(cliente_temporal.nombre, cliente_temporal.apellido, telefono, identificador, activo, saldo)
 
 def agregar_cliente(): # añadir el cliente en la lista del centro
     cliente_temporal = crear_cliente()
     lista_clientes.append(cliente_temporal)
 
+def introducir_saldo(cliente, lista_clientes):
+    for i, cliente in enumerate(lista_clientes):
+        print(f"{i + 1}. {cliente}")
+    cliente_saldo = int(input("Cliente que desea añadir saldo a su cuenta: ")) - 1
+    if 0 <= cliente_saldo < len(lista_clientes):
+        nuevo_saldo = float(input("Cantidad: "))
+        cliente.saldo += nuevo_saldo
+        print(f"El cliente {cliente.nombre} {cliente.apellido}, con identificador {cliente.identificador} ha añadido a su saldo {nuevo_saldo} € Total saldo: {cliente.saldo} €.")
+    else: 
+        print("Selecciona un número válido.")
+
+def mostrar_saldo(cliente, lista_clientes):
+    for i, cliente in enumerate(lista_clientes):
+        print(f"{i + 1}. {cliente}")
+    ver_saldo = int(input("Cliente que desea ver el saldo de su cuenta: ")) - 1
+    if 0 <= ver_saldo < len(lista_clientes):
+        print(f"El cliente {cliente.nombre} {cliente.apellido}, con identificador {cliente.identificador} tiene en su cuenta {cliente.saldo} €.")
+    else: 
+        print("Selecciona un número válido.")
+        
 def eliminar_cliente(lista_clientes): # valorar el poder eliminar al cliente con el identificador, REVISAR
     if lista_clientes: 
         for i, cliente in enumerate(lista_clientes):
@@ -37,18 +62,26 @@ def eliminar_cliente(lista_clientes): # valorar el poder eliminar al cliente con
     else:
         print("No hay clientes en la lista.")
             
-def cliente_moroso(): # añadir a la lista total de morosos 
+def cliente_moroso(cliente, lista_clientes): # añadir a la lista total de morosos revisar
     lista_morosos = []
-    for i, cliente in enumerate(lista_clientes):
-        print(f"{i+1}. {cliente.nombre} {cliente.apellido}")
-        moroso = int(input("Selecciona el número del cliente que quieres añadir a la lista de morosos (-2000): "))
-        lista_morosos.append(moroso)
+    for cliente in enumerate(lista_clientes):
+        if cliente.saldo < -2000:
+            lista_morosos.append(cliente)
+    print(lista_morosos)
+    
+        #print(f"{i+1}. {cliente.nombre} {cliente.apellido}")
+        #moroso = int(input("Selecciona el número del cliente que quieres añadir a la lista de morosos (-2000 €): "))
+        #lista_morosos.append(moroso)
                 
 class Empleados(Persona):
     def __init__(self, nombre, apellido, desocupado, lista_tareas):
         super().__init__(nombre, apellido)
         self.desocupado = desocupado
         self.lista_tareas = lista_tareas
+        
+    def __str__(self):
+        return f"Empleado: {self.nombre} {self.apellido} Desocupado: {self.desocupado} LISTA DE TAREAS: {self.lista_tareas}"
+        
 
 def crear_empleado(): # registrar un empleado 
     empleado_temporal = datos_comunes()
@@ -161,4 +194,3 @@ def datos_comunes():
     nombre = str(input("Nombre: "))
     apellido = str(input("Apellido: "))
     return Persona(nombre, apellido)
-     
