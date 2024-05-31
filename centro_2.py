@@ -127,7 +127,8 @@ class Centro:
                     
                     elif opcion_clientes == 6: # lista de morosos (no sale nada, REVISAR)
                         nuevo_moroso = p.cliente_moroso(nuevo_cliente, lista_morosos)
-                        print(nuevo_moroso)
+                        mostrar_moroso = p.mostrar_morosos(nuevo_moroso, lista_morosos)
+                        print(mostrar_moroso)
                         break
                     
                     elif opcion_clientes == 7: # dar de baja a un cliente 

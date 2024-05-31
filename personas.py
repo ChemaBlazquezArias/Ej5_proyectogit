@@ -64,15 +64,16 @@ def eliminar_cliente(lista_clientes): # valorar el poder eliminar al cliente con
             
 def cliente_moroso(cliente, lista_clientes): # añadir a la lista total de morosos revisar
     lista_morosos = []
-    for cliente in enumerate(lista_clientes):
+    for cliente in lista_clientes:
         if cliente.saldo < -2000:
             lista_morosos.append(cliente)
-    print(lista_morosos)
-    
-        #print(f"{i+1}. {cliente.nombre} {cliente.apellido}")
-        #moroso = int(input("Selecciona el número del cliente que quieres añadir a la lista de morosos (-2000 €): "))
-        #lista_morosos.append(moroso)
-                
+    return lista_morosos
+
+def mostrar_morosos(cliente, lista_morosos): 
+    if lista_morosos:
+        for i, cliente in enumerate(lista_morosos):
+            print(f"{i + 1}. {cliente}")
+             
 class Empleados(Persona):
     def __init__(self, nombre, apellido, desocupado, lista_tareas):
         super().__init__(nombre, apellido)
