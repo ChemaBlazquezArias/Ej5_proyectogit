@@ -119,8 +119,11 @@ class Centro:
                         print(saldo_cliente)
                         break
                     
-                    elif opcion_clientes == 4: # lista clientes del centro(lista centro)
-                        pass
+                    elif opcion_clientes == 4:
+                        print("--Lista de clientes del Centro--")
+                        for i, cliente in enumerate(lista_clientes):
+                            print(f"{i+1}. {cliente.nombre} {cliente.apellido} Id cliente: {cliente.identificador}")
+                        break
                     
                     elif opcion_clientes == 5: # anular una reserva
                         pass

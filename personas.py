@@ -48,7 +48,10 @@ def mostrar_saldo(cliente, lista_clientes):
         print(f"El cliente {cliente.nombre} {cliente.apellido}, con identificador {cliente.identificador} tiene en su cuenta {cliente.saldo} €.")
     else: 
         print("Selecciona un número válido.")
-        
+
+def mostrar_clientes(cliente, lista_clientes):
+    pass
+       
 def eliminar_cliente(lista_clientes): # valorar el poder eliminar al cliente con el identificador, REVISAR
     if lista_clientes: 
         for i, cliente in enumerate(lista_clientes):
