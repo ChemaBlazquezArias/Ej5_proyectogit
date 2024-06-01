@@ -24,7 +24,7 @@ class Cancha:
         nueva_cancha = cls(numero, deporte, precio, habilitada)
         cls.lista_canchas.append(nueva_cancha)
         print(f"Cancha número {numero} agregada correctamente.")
-    
+        
     @classmethod
     def listar_canchas_por_deporte(cls, deporte):
         canchas_filtradas = [cancha for cancha in cls.lista_canchas if cancha.deporte == deporte]

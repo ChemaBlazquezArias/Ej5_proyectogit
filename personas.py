@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Persona():
     def __init__(self, nombre, apellido):
         self.nombre = nombre
@@ -48,9 +50,6 @@ def mostrar_saldo(cliente, lista_clientes):
         print(f"El cliente {cliente.nombre} {cliente.apellido}, con identificador {cliente.identificador} tiene en su cuenta {cliente.saldo} €.")
     else: 
         print("Selecciona un número válido.")
-
-def mostrar_clientes(cliente, lista_clientes):
-    pass
        
 def eliminar_cliente(lista_clientes): # valorar el poder eliminar al cliente con el identificador, REVISAR
     if lista_clientes: 
@@ -65,7 +64,7 @@ def eliminar_cliente(lista_clientes): # valorar el poder eliminar al cliente con
     else:
         print("No hay clientes en la lista.")
             
-def cliente_moroso(cliente, lista_clientes): # añadir a la lista total de morosos revisar
+def cliente_moroso(cliente, lista_clientes):
     lista_morosos = []
     for cliente in lista_clientes:
         if cliente.saldo < -2000:
@@ -193,6 +192,39 @@ def eliminar_empleado_cancha():
             print("Número de cancha no válido.")
     except ValueError:
         print("Entrada no válida. Por favor ingrese un número.")
+
+
+def reservar_cancha(centro, id_cliente, id_pista, deporte, fecha, precio):
+    try:
+        fecha_reserva = datetime.strptime(fecha, "%Y-%m-%d %H:%M")
+    except ValueError:
+        raise ValueError("Fecha inválida. Debe estar en el formato 'YYYY-MM-DD HH:MM'")
+    
+    if id_cliente not in centro.clientes:
+        raise ValueError(f"No se encontró el cliente con ID {id_cliente}")
+    
+    cliente = centro.clientes[id_cliente]
+    
+    if cliente.saldo < 2000:
+        raise ValueError(f"Saldo insuficiente para realizar la reserva. Saldo actual: {cliente.saldo}, Precio: {precio}")
+    
+    cliente.saldo -= precio
+    
+    reserva = {
+        "nombre_cliente": cliente.nombre,
+        "id_cliente": id_cliente,
+        "id_pista": id_pista,
+        "deporte": deporte,
+        "fecha": fecha_reserva,
+        "precio": precio
+    }
+    
+    centro.reservas.append(reserva)
+    return reserva
+    
+def mostrar_reservas(reservas):
+    for reserva in reservas:
+        print(f"Cliente: {reserva['nombre_cliente']}, ID Cliente: {reserva['id_cliente']}, ID Pista: {reserva['id_pista']}, Deporte: {reserva['deporte']}, Fecha: {reserva['fecha'].strftime('%Y-%m-%d %H:%M')}, Precio: {reserva['precio']}")
 
 def datos_comunes():
     nombre = str(input("Nombre: "))
