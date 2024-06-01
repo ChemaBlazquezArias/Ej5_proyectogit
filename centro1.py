@@ -117,7 +117,10 @@ class Centro:
                 opcion_clientes = int(input("Selecciona una opción: "))
                 while True:
                     if opcion_clientes == 1: # hecho por Chema
-                       
+                        nuevo_cliente = p.crear_cliente()
+                        lista_clientes.append(nuevo_cliente)
+                        print("¡El cliente ha sido creado con éxito!")
+                        print(nuevo_cliente)
                         break
                     
                     elif opcion_clientes == 2:
