@@ -29,7 +29,7 @@ class Centro:
                 print("1. Crear centro.")
                 print("2. Crear cancha.")
                 print("3. Mostrar canchas.")
-                print("4. Mostrar información.")
+                print("4. Mostrar información.") # Que informacion???
                 print("5. Buscar cancha (por deporte).")
                 print("6. Mostrar canchas reservadas.")
                 print("7. Mostrar cliente y reserva.")
@@ -40,25 +40,30 @@ class Centro:
                 while True:
                     
                     if opcion_centro == 1:
+                        centro = Centro.crear_centro()
+                        print("Ya tenemos centro.")
+                        print(centro)
+                        
+                    elif opcion_centro == 2:
                         nueva_cancha = c.agregar_cancha()
                         lista_canchas.append(nueva_cancha)
                         print("¡La nueva cancha se ha creado con exito!")
                         print(nueva_cancha)
-                        
-                    elif opcion_centro == 2:
-                        pass
                     
                     elif opcion_centro == 3:
-                        pass
+                        print(lista_canchas)
                     
                     elif opcion_centro == 4:
                         pass
                     
                     elif opcion_centro == 5:
-                        pass
+                        mostar_cancha = c.listar_canchas_por_deporte()
+                        print(mostar_cancha)
                     
                     elif opcion_centro == 6:
-                        pass
+                        canchas_reservadas = c.mostrar_canchas_reservadas()
+                        print(f"Las canchas reservadas son:\n{canchas_reservadas}")
+                    
                     elif opcion_centro == 7:
                         pass
                     

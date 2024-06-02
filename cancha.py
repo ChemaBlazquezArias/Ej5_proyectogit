@@ -26,13 +26,21 @@ class Cancha:
         print(f"Cancha número {numero} agregada correctamente.")
     
     @classmethod
-    def listar_canchas_por_deporte(cls, deporte):
-        canchas_filtradas = [cancha for cancha in cls.lista_canchas if cancha.deporte == deporte]
-        if canchas_filtradas:
-            for cancha in canchas_filtradas:
+    def listar_canchas_por_deporte(cls):
+        deporte = int(input("Introduce el deporte del que quieres canchas: "))
+        for cancha in cls.lista_canchas:
+            if cancha.deporte == deporte:
                 print(cancha)
         else:
             print(f"No se encontraron canchas para el deporte: {deporte}")
+    
+    @classmethod
+    def mostrar_canchas_reservadas(cls):
+        canchas_reservadas = []
+        for cancha in cls.lista_canchas:
+            if cancha.habilitada == 'si':
+                canchas_reservadas.append(cancha)
+                print (canchas_reservadas)
 
     @classmethod
     def quitar_cancha(cls, numero):
@@ -44,10 +52,9 @@ class Cancha:
                     break
                 
                 else:
-                    if cancha.numero == numero:
-                        cls.lista_canchas.remove(cancha)
-                        print(f"Cancha con número {numero} eliminada.\n")
-                        break
+                    cls.lista_canchas.remove(cancha)
+                    print(f"Cancha con número {numero} eliminada.\n")
+                    break
         else:
             print(f"No se encontró una cancha con el número {numero}.")
     
