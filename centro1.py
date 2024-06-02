@@ -3,6 +3,10 @@ import cancha as c
 import reserva as r
 
 class Centro:
+    def __init__(self, nombre_centro, direccion_centro):
+        self.nombre_centro = nombre_centro
+        self.direccion_centro = direccion_centro
+        
     def crear_centro():
         nombre_centro = str(input("Nombre del centro: "))
         direccion_centro = str(input("Dirección del centro: "))
@@ -28,13 +32,12 @@ class Centro:
                 print("--Menú de la gestión del centro--")
                 print("1. Crear centro.")
                 print("2. Crear cancha.")
-                print("3. Mostrar canchas.")
-                print("4. Mostrar información.") # Que informacion???
-                print("5. Buscar cancha (por deporte).")
-                print("6. Mostrar canchas reservadas.")
-                print("7. Mostrar cliente y reserva.")
-                print("8. Eliminar cancha.")
-                print("9. Atrás.")
+                print("3. Mostrar información.")
+                print("4. Buscar cancha (por deporte).")
+                print("5. Mostrar canchas reservadas.")
+                print("6. Mostrar cliente y reserva.")
+                print("7. Eliminar cancha.")
+                print("8. Atrás.")
                 opcion_centro = int(input("Selecciona una opción: "))
                 
                 while True:
@@ -49,28 +52,26 @@ class Centro:
                         lista_canchas.append(nueva_cancha)
                         print("¡La nueva cancha se ha creado con exito!")
                         print(nueva_cancha)
-                    
+
                     elif opcion_centro == 3:
-                        print(lista_canchas)
+                        print(f"{centro.nombre_centro} Dirección: {centro.direccion_centro}")
+                        for i, cancha in enumerate(lista_canchas):
+                            print(f"Cancha número: {cancha.numero} Deporte: {cancha.deporte} ")
                     
                     elif opcion_centro == 4:
-                        pass
+                        c.listar_canchas_por_deporte()
                     
                     elif opcion_centro == 5:
-                        mostar_cancha = c.listar_canchas_por_deporte()
-                        print(mostar_cancha)
-                    
-                    elif opcion_centro == 6:
                         canchas_reservadas = c.mostrar_canchas_reservadas()
                         print(f"Las canchas reservadas son:\n{canchas_reservadas}")
                     
+                    elif opcion_centro == 6: 
+                        print(r.listar_reservas_cliente())
+                    
                     elif opcion_centro == 7:
-                        pass
-                    
+                        c.quitar_cancha(lista_canchas)
+
                     elif opcion_centro == 8:
-                        pass
-                    
-                    elif opcion_centro == 9:
                         print("Volviendo al menú principal...")
                         break
                 
@@ -90,20 +91,17 @@ class Centro:
                         lista_empleados.append(nuevo_empleado)
                         print("¡Empleado añadido con éxito!")
                         print(nuevo_empleado)
-                        break
                     
                     elif opcion_empleados == 2:
                         for i, nuevo_empleado in enumerate(lista_empleados):
                             print(f"{i+1}. {nuevo_empleado}")
-                        break
                     
-                    elif opcion_empleados == 3: # revisar
-                        p.asignar_tarea()
-            
-                        break
-                    elif opcion_empleados == 4: # revisar
+                    elif opcion_empleados == 3:
+                        nueva_tarea = p.asignar_tarea()
+                        print(nueva_tarea)
+                    
+                    elif opcion_empleados == 4:
                         p.eliminar_tarea_empleado()
-                        break
                     
                     elif opcion_empleados == 5:
                         print("Volviendo al menú principal...")
@@ -115,42 +113,41 @@ class Centro:
                 print("2. Añadir saldo a un cliente.")
                 print("3. Mostrar saldo de un cliente.")
                 print("4. Ver lista de clientes del centro.")
-                print("5. Anular una reserva.")
-                print("6. Mostrar lista de clientes morosos.")
-                print("7. Dar de baja a un cliente.")
+                print("5. Mostrar lista de clientes morosos.")
+                print("6. Dar de baja a un cliente.")
+                print("7. crear reserva.")
                 print("8. Atrás.")
                 opcion_clientes = int(input("Selecciona una opción: "))
+                
                 while True:
+                    
                     if opcion_clientes == 1: # hecho por Chema
-                        nuevo_cliente = p.crear_cliente()
-                        lista_clientes.append(nuevo_cliente)
-                        print("¡El cliente ha sido creado con éxito!")
-                        print(nuevo_cliente)
-                        break
+                        pass
                     
                     elif opcion_clientes == 2:
                         nuevo_saldo = p.introducir_saldo(nuevo_cliente, lista_clientes)
                         print(nuevo_saldo)
-                        break
                     
                     elif opcion_clientes == 3:
                         saldo_cliente = p.mostrar_saldo(nuevo_cliente, lista_clientes)
                         print(saldo_cliente)
-                        break
                     
-                    elif opcion_clientes == 4: # lista clientes del centro(lista centro)
-                        pass
+                    elif opcion_clientes == 4: 
+                        for i, cliente in enumerate(lista_clientes):
+                            print(f"{i+1}. {cliente.nombre} {cliente.apellido} Id cliente: {cliente.identificador}")
                     
-                    elif opcion_clientes == 5: # anular una reserva
-                        pass
-                    
-                    elif opcion_clientes == 6: # lista de morosos (no sale nada, REVISAR)
+                    elif opcion_clientes == 5: 
                         nuevo_moroso = p.cliente_moroso(nuevo_cliente, lista_morosos)
-                        print(nuevo_moroso)
-                        break
+                        mostrar_moroso = p.mostrar_morosos(nuevo_moroso, lista_morosos)
+                        print(mostrar_moroso) 
                     
-                    elif opcion_clientes == 7: # dar de baja a un cliente 
-                        pass
+                    elif opcion_clientes == 6: 
+                         p.eliminar_cliente(lista_clientes)        
+                    
+                    elif opcion_clientes == 7: 
+                        nueva_reserva = r.crear_reserva()
+                        print(nueva_reserva)
+                    
                     elif opcion_clientes == 8:
                         print("Volviendo al menú principal...")
                         break

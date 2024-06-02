@@ -48,10 +48,10 @@ def main():
                         break
                     
                     elif opcion_centro == 2:
-                        nueva_cancha = c.Cancha.agregar_cancha()
+                        nueva_cancha = c.agregar_cancha()
                         lista_canchas.append(nueva_cancha)
+                        print("¡La nueva cancha se ha creado con exito!")
                         print(nueva_cancha)
-                        break
                                 
                     elif opcion_centro == 3:
                         print(f"{mi_centro.nombre_centro} Dirección: {mi_centro.direccion_centro}")

@@ -1,3 +1,5 @@
+import personas as p 
+import cancha as c 
 class Reserva:
     def __init__(self, numero, fecha, cliente, cancha, costo):
         self.numero = numero
@@ -6,29 +8,35 @@ class Reserva:
         self.cancha = cancha
         self.costo = costo
 
-    def crear_reserva(self, fecha, cliente, cancha, costo):
-        if not cliente.activo:
+    def crear_reserva(self):
+        numero = int(input("Introduce el numero de la reserva: "))
+             
+        cliente = int(input("Introduce el nombre del cliente: "))
+        if cliente not in p.lista_clientes:
             print("Cliente no está activo.")
-            return False
+        
+        else:
+        
+            if cliente.saldo < -2000:
+                print("Cliente tiene saldo negativo menor a -2000.")
+                return False
+            else:
+                costo = int(input("Introduce el costo: "))
+                cliente.saldo - costo
+        
+            fecha = int(input("Introduce la fecha: "))
+            for fecha in c.lista_cachas:
+                if fecha == c.lista_canchas.fecha:
+                    print("Cancha ocupada en ese horario.")
+                    return False
 
-        if cliente.saldo < -2000:
-            print("Cliente tiene saldo negativo menor a -2000.")
-            return False
-
-        for reserva in cancha.habilitada:
-            if reserva.fecha == fecha:
-                print("Cancha ocupada en ese horario.")
+            cancha = int(input("Introduce el nombre de la cancha: "))
+            if cancha not in c.lista_canchas:
+                print("Cancha no existe.")
                 return False
 
-        nueva_reserva = Reserva(self.numero, fecha, cliente, cancha, costo)
-        self.numero += 1
-
-        cliente.saldo -= costo
-        cliente.reservas.append(nueva_reserva)
-        cancha.reservas.append(nueva_reserva)
-
-        print(f"Reserva creada: {nueva_reserva.numero}")
-        return True
+        nueva_reserva = Reserva(numero, fecha, cliente, cancha, costo)
+        return nueva_reserva
 
     def listar_reservas_cancha(self, cancha):#Canchas reservadas
         print(f"Reservas de la cancha {cancha.nombre}:")
