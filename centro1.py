@@ -120,10 +120,16 @@ class Centro:
                 opcion_clientes = int(input("Selecciona una opción: "))
                 
                 while True:
-                    
+                    """Encarna aqui he tenido un problemilla y es que me aparecia hecho por mi, cuando lo habia
+                    hecho chema, lo he borrado para decirle que lo hiciese y ahora no puede, 
+                    intenta no tener en cuenta que salga mi nombre"""
                     if opcion_clientes == 1: # hecho por Chema
-                        pass
-                    
+                        nuevo_cliente = p.crear_cliente()
+                        lista_clientes.append(nuevo_cliente)
+                        print("¡Cliente creado con éxito!")
+                        print(nuevo_cliente)
+                        break
+
                     elif opcion_clientes == 2:
                         nuevo_saldo = p.introducir_saldo(nuevo_cliente, lista_clientes)
                         print(nuevo_saldo)
