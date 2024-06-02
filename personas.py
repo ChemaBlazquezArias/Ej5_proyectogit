@@ -23,11 +23,11 @@ def crear_cliente():
     cliente_temporal = datos_comunes()
     telefono = int(input("Teléfono: "))
     identificador = int(input("Identificador: "))
-    activo = str(input("Activo (S/N): ")).lower() == 's' # cliente activo o en vez de darse de baja dejarlo como cliente inactivo
+    activo = str(input("Activo (S/N): ")).lower() == 's'
     saldo = float(input("Saldo: "))
     return Cliente(cliente_temporal.nombre, cliente_temporal.apellido, telefono, identificador, activo, saldo)
 
-def agregar_cliente(): # añadir el cliente en la lista del centro
+def agregar_cliente(): 
     cliente_temporal = crear_cliente()
     lista_clientes.append(cliente_temporal)
 
@@ -51,7 +51,7 @@ def mostrar_saldo(cliente, lista_clientes):
     else: 
         print("Selecciona un número válido.")
        
-def eliminar_cliente(lista_clientes): # valorar el poder eliminar al cliente con el identificador, REVISAR
+def eliminar_cliente(lista_clientes): 
     if lista_clientes: 
         for i, cliente in enumerate(lista_clientes):
             print(f"{i + 1}. {cliente}")
@@ -86,14 +86,14 @@ class Empleados(Persona):
         return f"Empleado: {self.nombre} {self.apellido} Desocupado: {self.desocupado} LISTA DE TAREAS: {self.lista_tareas}"
         
 
-def crear_empleado(): # registrar un empleado 
+def crear_empleado(): 
     empleado_temporal = datos_comunes()
     desocupado = str(input("Desocupado (S/N): ")).lower() == 's'
     lista_tareas_input = str(input("Asignar tarea (separar tareas por comas): "))
     lista_tareas = [tarea.strip() for tarea in lista_tareas_input.split(',')]  # Convertir la cadena en una lista
     return Empleados(empleado_temporal.nombre, empleado_temporal.apellido, desocupado, lista_tareas)
 
-def asignar_empleado(): # asignar un empleado a una cancha
+def asignar_empleado(): 
     empleado_temporal = crear_empleado()
     lista_empleados.append(empleado_temporal)
     
@@ -148,7 +148,7 @@ def eliminar_tarea_empleado():
         print("Entrada no válida. Por favor ingrese un número.")
          
 def empleados_desocupados():
-    personal_desocupado = []  # Crear una lista vacía para los empleados desocupados
+    personal_desocupado = []  
     for empleado in lista_empleados: 
         if empleado.desocupado:
             personal_desocupado.append(empleado)
